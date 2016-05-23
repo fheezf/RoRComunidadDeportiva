@@ -1,0 +1,51 @@
+#articulos {
+	height: 3168px;
+	border: 1px solid grey;
+}
+
+#combo {
+	padding-top: 5px;
+	margin-top: 4px;
+	height: 40px;
+	width: 200px;
+
+}
+
+
+/*a partir de aqui viene los css del dialog para colocarlo mejor */
+
+.ui-dialog-buttonset {
+	float: right;
+	width: 90px;
+	height: 20px;
+}
+
+.ui-dialog-buttonset button {
+	width: 35px;
+	height: 20px;
+	margin-left: 10px;
+}
+
+.ui-dialog-titlebar button {
+	float: right;
+}
+
+#ui-id-54{
+	font-size: 14px;
+}
+
+#dialog-confirm {
+	font-size: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,140 @@
+
+#menuformulario {
+	height: 3168px;
+}
+
+
+#titulo_art {
+	width: 440px;
+	margin-top: 5px;
+	height: 20px;
+}
+
+#inputTitulo {
+	width: 450px;
+}
+
+#summary {
+	margin-top: 5px;
+}
+
+#tipo {
+	height: 35px;
+}
+
+.inputTipo {
+	margin-left: 85px;
+	margin-top: 10px;
+}
+
+.titulo p {
+	float: right;
+	padding: 5px 5px 0 0;
+	font-size: 17px;
+}
+
+.form-left {
+	height: 300px;
+}
+
+.form-left p {
+	float: right;
+	padding: 24px 0 24px 0;
+	font-size: 11px;
+}
+
+#rutavideo, #images_ {
+	margin-top: 5px;
+	font-size: 9px;
+}
+
+#video, #imagenes {
+	display: block;
+	margin-top: 26px;
+}
+
+.form-right{
+	height: 300px;
+	float: left;
+}
+
+.form-right p {
+	float: right;
+	padding: 18px 0 15px 0;
+	font-size: 11px;
+}
+
+#dinamico {
+  height: auto;
+}
+
+
+.ui-selectmenu-menu:nth-of-type(n) .ui-menu { /*Cojo el de la provincia y le pongo tamaño fijo para que no sea muy grande. NOTA: no entiendo porque
+												tiene que ser el tercero si es el segundo select creado */
+	height: 100px;
+}
+
+/*.ui-selectmenu-button{  Este lo utilizo para poder cambiar el margin entre los select. 
+							NOTA: Desde el id de los select no cambia nada y aún nose porque
+	margin-top: 19px;
+}*/
+
+#body {
+	margin-left: 5px;
+}
+
+#liga, #locations, #locations2, #equipo-local, #equipo-visitante, #jugador {
+
+	width: 200px;
+}
+
+#liga-button, #locations-button, #locations2-button, #equipo-local-button, #equipo-visitante-button, #jugador-button {
+  margin-top: 22px;
+}
+
+#article_published_at {
+	margin-top: 27px;
+  margin-bottom: 18px;
+	width: 200px;
+}
+
+#article_result {
+	margin-top: 23px;
+	width: 40px;
+}
+
+
+
+
+#obl {
+	font-size: 12px;
+	margin-left: 5px;
+}
+
+#button {
+  display: inline-table;
+	width: 90px;
+	height: 25px;
+	-webkit-transition: all 0.3s ease-in-out;
+	   -moz-transition: all 0.3s ease-in-out;
+	    -ms-transition: all 0.3s ease-in-out;
+	     -o-transition: all 0.3s ease-in-out;
+}
+
+#button:hover {
+	background-color: #BCBCBC;
+	opacity: .7;
+}
+
+.button_to {
+  margin: 10px 0 0 35px;
+	width: 90px;
+	height: 25px; 
+  display: inline-table;
+}
+
+
+
+
+
+

@@ -1,0 +1,98 @@
+#articulo_noticia {
+	position: relative;
+}
+
+#articulo_noticia{
+	height: auto;
+}
+
+#headerarticulo {
+	margin-top: 10px;
+	height: auto;
+	font-size: 36px;
+}
+
+#headerarticulo h1 {
+	padding: 0 15px 0 15px;
+	text-align: center;
+}
+
+#imgarticulo{
+	margin: 5px 0 0 10px;
+	width: 600px;
+	height: 300px;
+	overflow: hidden;
+}
+
+#imgarticulo img{
+	width: 100%;
+}
+
+#resultado {
+	color: grey;
+	margin-top: 5px;
+	text-align: center;
+}
+
+#resumen, #resultado {
+	margin-top: 5px;
+}
+
+#resumen p {
+	color: grey;
+	padding: 0 15px 0 15px;
+	text-align: center;
+}
+
+#resultado p {
+  color: grey;
+	padding: 0 15px 0 15px;
+	text-align: center;
+  display: inline;
+}
+
+p {
+	font-family: "Georgia", fantasy;
+}
+
+#separador{
+	width: 607px;
+	margin: 10px 5px 10px 5px;
+	background: #AA0C00;
+	height: 2px;
+}
+
+#equipolocal, #equipovisitante {
+	height: 121px;
+	width: 298px;
+}
+
+#nombre {
+	text-align: center;
+	font-size: 18px;
+}
+
+#escudo {
+	margin-top: 5px;
+	height: 100px;
+	text-align: center;
+}
+
+#bodyart p {
+	margin-top: 5px;
+	padding: 0 15px 5px 15px;
+	text-align: justify;
+}
+
+#articuloFoot {
+	position: relative;
+	bottom: 0;
+	left: 0;
+}
+
+#articuloFoot p{
+	margin-left: 5px;
+	padding: 8px;
+	float: left;
+	font-size: 12px;
+}
