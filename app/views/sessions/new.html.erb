@@ -1,0 +1,31 @@
+<div class="grid_8 alpha" id="headercontenido">
+		
+			<p> LOGIN </p>
+			
+</div>
+<% if flash.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% flash.keys.each do |msg| %>
+        <li><%= flash[msg] %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%= form_tag session_path, :class => "session" do %>
+
+  <div class="field">
+    <%= label_tag :email %><br/>
+    <%= text_field_tag :email %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :password %><br/>
+    <%= password_field_tag :password %>
+  </div>
+  
+  <div class="actions">
+    <%= submit_tag 'login', :id => "button" %>
+  </div>
+<% end %>
+    <%= button_to 'Registro', new_user_path, :id => "button", :class => "registro", :method => :get %><br/>

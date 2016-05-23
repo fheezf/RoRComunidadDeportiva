@@ -1,0 +1,47 @@
+<%= form_for @article, :html => {:multipart => true} do |f| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %> evitó que el artículo fuese guardado:</h2>
+
+      <ul>
+      <% @article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="grid_8 alpha" id="menuformulario">
+				
+					<div class="grid_2 alpha titulo"><p>Título* : </p></div>
+					<div class="grid_6 omega" id="inputTitulo" ><%= f.text_field :title, :id => "titulo_art", :autofocus => true %></div>
+					<div class="grid_2 alpha titulo"><p>Resumen* : </p></div>
+					<div class="grid_6 omega" id="inputTitulo" ><%= f.text_area :summary, :id => "summary", :size => "61x3" %></div>
+          <div class="grid_2 alpha titulo" ><p>Tipo* : </p></div>          
+          <div class="grid_6 omega" id="tipo">
+					<%= check_box_tag 'article[tipo]', 'partido', false, :class => "inputTipo", :onclick => "tipoPartido()", :id => "partido" %><%= f.label 'partido' %>
+          <%= check_box_tag 'article[tipo]', 'noticia', false, :class => "inputTipo", :onclick => "tipoNoticia()", :id => "noticia" %><%= f.label 'noticia' %>
+	
+
+				</div>
+					<div class="grid_8 alpha" id="dinamico">
+            
+
+
+          </div>
+					<div class="grid_8 alpha">
+            <%= f.text_area :body, :id => "body", :size => "83x17" %>
+					</div>
+					<div class="grid_3 alpha">
+						<p id="obl">Los campos marcados con * y el texto del artículo son obligatorios</p>
+					</div>
+					<div class="grid_5 omega">					
+<input type="button" id="button" value="Vaciar" onClick="limpiar()" ></input>
+            <%= f.submit "Enviar", :id => 'button' %>
+            <%=  f.submit "Cancelar", :id => "button", :value => "Cancelar", :formnovalidate => true %>
+					</div>
+			
+			</div>
+  
+ 
+<% end %>

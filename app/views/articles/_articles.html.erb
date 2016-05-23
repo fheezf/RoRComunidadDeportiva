@@ -1,0 +1,116 @@
+
+    <% if @articles.count == 1 %>
+      <div class="grid_8 alpha" id="artppal">
+				<% if @articles.first.images.count > 0 %>
+					<div class="grid_7" class="imgppal" id="imgppal">
+            <%= link_to(image_tag(@articles.first.images[0].image.url), @articles.first)%>
+					</div>
+        <% end %>
+				<h1><%= link_to(@articles.first.title, @articles.first)%></h1>
+        <p><%= link_to(@articles.first.summary, @articles.first)%></p>
+				<div id="artppalfoot">
+					<p><b><%= @articles.first.author %></b></p>
+					<% if @articles.first.published_at != nil %>
+					  <p><b><%= @articles.first.published_at.strftime("%d-%m-%Y") %></b></p>
+          <% end %>
+				</div>	
+				
+			</div><!--grid_8_artppal-->
+    <% else %>
+      <% for i in 0..(@articles.count - 1) / 2 %>
+        <% if i == 0 %>
+          <div class="grid_8 alpha" id="artppal">
+				  <% if @articles[i].images.count > 0 %>
+			  	  <div class="grid_7" class="imgppal" id="imgppal">
+             <%= link_to(image_tag(@articles[i].images[0].image.url), @articles[i])%>
+				  	</div>
+          <% end %>
+			    	<h1><%= link_to(@articles[i].title, @articles[i])%></h1>
+            <p><%= link_to(@articles[i].summary, @articles[i])%></p>
+			    	<div id="artppalfoot">
+				  	  <p><b><%= @articles[i].author %></b></p>
+				     	<% if @articles[i].published_at != nil %>
+					     <p><b><%= @articles[i].published_at.strftime("%d-%m-%Y") %></b></p>
+              <% end %>
+			    	</div>	
+				
+		  		</div><!--grid_8_artppal-->
+
+
+       <% else %>
+           <% i = i * 2 - 1%>
+           <div class="grid_4 alpha left" id="articulo">
+					 <% if @articles[i].images.count > 0 %> 
+				    	<div class="grid_3" class="imgart" id="imgart">
+                 <%= link_to(image_tag(@articles[i].images[0].image.url), @articles[i])%>
+				    	</div>
+			     <% end %>
+					  	<H2><%= link_to(@articles[i].title, @articles[i])%></H2>
+					
+
+				  		<p><%= link_to(@articles[i].summary, @articles[i])%></p>
+				    	<div id="artfoot">
+					    	<p><b><%= @articles[i].author %></b></p>
+				        <% if @articles[i].published_at != nil %>
+					        <p><b><%= @articles[i].published_at.strftime("%d-%m-%Y") %></b></p>
+                <% end %>
+				    	</div>	
+					
+			    	
+				
+			  	</div><!--grid_4_articulo-->
+          <% i = i + 1  %>
+
+          <div class="grid_4 omega right" id="articulo">
+					<% if @articles[i].images.count > 0 %>
+				  	<div class="grid_3" class="imgart" id="imgart">
+               <%= link_to(image_tag(@articles[i].images[0].image.url), @articles[i])%>
+				  	</div>
+			    <% end %>
+						<H2><%= link_to(@articles[i].title, @articles[i])%></H2>
+					
+
+						<p><%= link_to(@articles[i].summary, @articles[i])%></p>
+					  <div id="artfoot">
+						  <p><b><%= @articles[i].author %></b></p>
+					    <% if @articles[i].published_at != nil %>
+					     <p><b><%= @articles[i].published_at.strftime("%d-%m-%Y") %></b></p>
+              <% end %>
+				  	</div>	
+					
+					
+				
+				  </div><!--grid_4_articulo-->
+
+      
+       <% end %>
+     
+     
+       <% if (@articles.count % 2) == 0 %>
+          <% if i == @articles.count - 2 %>
+          <% i = i + 1  %>
+          <div class="grid_4 alpha left" id="articulo">
+					<% if @articles[i].images.count > 0 %>
+				  	<div class="grid_3" class="imgart" id="imgart">
+             <%= link_to(image_tag(@articles[i].images[0].image.url), @articles[i])%>
+					  </div>
+			    <% end %>
+						<H2><%= link_to(@articles[i].title, @articles[i])%></H2>
+					
+
+						<p><%= link_to(@articles[i].summary, @articles[i])%></p>
+					  <div id="artfoot">
+					  	<p><b><%= @articles[i].author %></b></p>
+					    <% if @articles[i].published_at != nil %>
+					     <p><b><%= @articles[i].published_at.strftime("%d-%m-%Y") %></b></p>
+              <% end %>
+				  	</div>	
+					
+					
+				
+			  	</div><!--grid_4_articulo-->
+          <% end %>
+       <% end %>
+      <% end %>
+   <% end %>
+    

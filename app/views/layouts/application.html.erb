@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ComunidadDeportiva</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= yield :head %>
+</head>
+<body onclick="ocultaSlider()">
+	<div class="container_12">
+		<div class="grid_12" id="menusup">
+    <% if logged_in? %>
+     <p>¡Bienvenido! <%= User.find_by_id(current_user).name %> <%= User.find_by_id(current_user).surname %></p>
+      <ul> 
+        <li><%= link_to "Modificar password", edit_user_path(current_user) %></li>
+        <li> <%= link_to "Cerrar sesión", logout_path %></li>
+      </ul>
+   <% else %>
+    <ul>
+     <li><%= link_to "Login", login_path %></li>
+      <li><%= link_to "Registro", new_user_path %></li>
+    </ul>
+  <% end %>
+		</div><!--grid_3_menu_superior-->
+		<div class="grid_12" id="banner">
+			<%= link_to("COMUNIDAD DEPORTIVA", root_path)%>
+		</div><!--grid_12_logo_banner-->
+		
+		<div class="clear"></div>
+		
+		<div class="grid_12" id="anuncios1">
+			<%= image_tag("loading.gif", :alt => 'loading')%>
+		</div><!--grid_12_anuncios1-->
+		
+		<div class="clear"></div>
+		
+		<div class="grid_12" id="menuprim">
+		
+			<div class="grid_9 alpha">
+				<ul >
+					<li class="menu"><%= link_to("Inicio", root_path)%></li>
+					<li class="menu"><a href=#>Liga BBVA</a>
+						<ul>
+							<li><a href=#>Resultados</a></li>
+							<li><%= link_to("Clasificación", '/ligaBBVA/clasificacion?query=Liga BBVA') %></li>
+							<li><a href=#>Calendario</a></li>
+							<li><a href=#>Goles</a></li>
+							<li><a href=#>Asistencias</a></li>
+						</ul>
+					</li >
+					<li class="menu"><a href=#>Liga Adelante</a>
+						<ul>
+							<li><a href=#>Resultados</a></li>
+							<li><a href=#>Clasificación</a></li>
+							<li><a href=#>Calendario</a></li>
+							<li><a href=#>Goles</a></li>
+							<li><a href=#>Asistencias</a></li>
+						</ul>
+					</li>
+					<li class="menu"><a href=#>Segunda B</a>
+						<ul>
+							<li><a href=#>Resultados</a></li>
+							<li><a href=#>Clasificación</a></li>
+							<li><a href=#>Calendario</a></li>
+						</ul>
+				
+					</li>
+					<li class="menu"><%= link_to("Tu provincia", province_path) %></li>
+           <% if logged_in? %>
+              <% if current_user.role == "editor" %>
+                 <li class="menu"><%= link_to("Crear Artículo", new_article_path) %></li>
+              <% end %>
+           <% end %>
+				</ul>
+			
+			</div><!--grid_12_menu_principal-->
+		
+			<div class="grid_3 omega" id="search">
+        <%= form_tag articles_path, :id => 'menuform', method: 'get', remote: true do %>
+
+              <%= text_field_tag :buscar, params[:buscar], :placeholder => 'Título del artículo', :id => 'text' %>
+              <%= image_submit_tag "searchButton.png", name: "", :id => 'searchbut' %>
+
+        <% end %>
+				
+		  </div>
+		</div>
+		
+		<div class="clear"></div>
+		
+		<div class="grid_12" id="contenido">
+			
+      <%= yield :select %>
+			<div class="grid_8 alpha" id="articulos">
+
+      <%= yield %>
+
+      </div><!--grid_9_articulos-->
+		
+			<div class="grid_4 omega" id="anuncios2">
+				<%= image_tag("loading.gif", :alt => 'loading')%>
+			</div><!--grid_4_anuncios2-->
+			
+		</div><!--grid_12_contenido-->
+		
+		<div class="clear"></div>
+		
+		<div class="grid_12" id="footer">
+		
+			<div class="grid_3 alpha" id="foot1">
+			
+				<%= link_to(image_tag("twitter.png", :alt => 'Twitter'), root_path)%>
+				<%= link_to(image_tag("facebook.png", :alt => 'Facebook'), root_path)%>
+				
+			</div>
+			
+			<div class="grid_6" id="foot2">
+			
+				<ul>
+					<li><a href=#>Contacta</a> | </li>
+					<li><a href=#>Politica de privacidad</a> | </li>
+					<li><a href=#>Términos de uso</a> | </li>
+					<li><a href=#>Política sobre cookies</a> </li>
+				
+				</ul>
+			</div>
+			
+			<div class="grid_3 omega" id="foot3"></div>
+			
+		</div><!--grid_12_footer-->
+		
+		<div class="clear"></div>
+		
+		
+		
+
+
+	
+	</div>
+
+</body>
+</html>

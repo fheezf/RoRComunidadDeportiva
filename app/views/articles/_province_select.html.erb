@@ -1,0 +1,22 @@
+<% content_for :select do %>
+<div id="dialog-confirm"></div>
+<div class="grid_3 prefix_5 alpha combo" id="combo" >
+				  	<%= select_tag "prov", options_from_collection_for_select(@location, "id", "province") %>
+				</div>
+  
+	<script type="text/javascript" data-turbolink-track="false">
+    function inicio(){				
+      $( "#prov" ).selectmenu({
+					change: function(){
+						getProvincia();
+					}
+				}
+				);
+		}		
+				
+		$(document).ready(inicio)
+    $(document).on('page:change', inicio);	
+    $(document).ready(callCookie)	
+			
+	</script>	
+<% end %>

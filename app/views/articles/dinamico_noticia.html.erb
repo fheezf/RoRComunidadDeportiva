@@ -1,0 +1,26 @@
+<div class="grid_4 alpha form-left">
+						<div class="grid_1 alpha form-left"><p>Vídeo: </p><p>Imágenes: </p></div>
+						<div class="grid_3 omega form-right">
+							<input type="checkbox" id="video" onClick="mostrarOcultarRutaVideo()"></input>
+							<input type="file" id="rutavideo" style="visibility:hidden;"></input>
+							<input type="checkbox" id="imagenes" onClick="mostrarOcultarRutaImagen()"></input>
+							<%= file_field_tag "images[]", type: :file, multiple: true, :style => "visibility:hidden;" %>		
+						
+						</div>
+					</div>
+					
+					<div class="grid_4 omega form-right">
+					<div class="grid_1 alpha form_right"><p>Liga*: </p><p>Provincia*: </p><p>Equipo: </p><p>Jugador: </p><p>Fecha*: </p></div>
+					<div class="grid_3 omega form_right">
+						<select required id="liga" name="liga" >
+						<option value="0" selected> Seleccione una Liga </option>
+						<option value="liga_bbva" > Liga BBVA</option>
+						<option value="liga_adelante" > Liga Adelante</option>
+						<option value="segunda_b" > Segunda B </option>
+						</select>
+						<%= select_tag "locations", options_from_collection_for_select(@location, "id", "province"), :name => "article[locations]" %>
+						<%= select_tag "equipo-local", options_from_collection_for_select(@team, "id", "name"), :name => "article[local_team]"  %>
+						<select id="jugador"><option value="0"> - </option></select>
+						<%= text_field_tag "article[published_at]" %>
+					</div>
+					</div>

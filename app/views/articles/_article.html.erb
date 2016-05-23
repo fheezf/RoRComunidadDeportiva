@@ -1,0 +1,85 @@
+<div class="grid_8 alpha" id="articulo_noticia">
+
+				
+				<% if @article.images.count == 1 %>
+             	<div class="grid_8 alpha" id="imgarticulo">
+				        	<%= image_tag(@article.images[0].image.url)  %>
+			
+				      </div>
+        <% else %>
+            <% if @article.images.count > 1 %>
+               <div id="wowslider-container1" style="display: none;" class="slider">
+						   <div class="ws_images slider"><ul>
+               <% for i in 0 .. @article.images.count - 1 %>
+							   <li><%= image_tag(@article.images[i].image.url, :alt => '', :title => '', :id => 'wows1_'+i.to_s) %></li>
+               <% end %>
+					  	 </ul></div>
+					     <div class="ws_bullets"><div>
+               <% for i in 0 .. @article.images.count - 1 %>
+							    <%= link_to(image_tag(@article.images[i].image.url, :alt => ''), "#", :title => '' )%>i
+               <% end %>
+					  		
+	             </div></div>
+					     </div>	
+               <%= image_tag(@article.images[0].image.url, :class => 'imagenSlider', :onclick => 'muestraSlider()') %>
+            <% end %>
+        <% end %>
+				<div class="grid_8" id="headerarticulo"><h1><%= @article.title %></h1></div>
+				<% if @article.tipe != nil %>
+           <% if @article.tipe == 'partido'%>
+			      	<div class="grid_8 alpha" id="resultado">
+                <p><%= @article.local_team.name %></p><p><%= @article.result %></p><p><%= @article.foreign_team.name %></p>
+              </div>
+           <% else %>
+              <div class="grid_8 alpha" id="resultado">
+                <p><%= @article.local_team.name %></p>
+              </div>
+           <% end %>
+        <% end %>
+        <div class="grid_8 alpha" id="resumen">
+					<p><%= @article.summary %></p>
+				</div>
+				
+				<div class="grid_8 alpha" id="separador"></div>
+				<% if @article.tipe != nil %>
+				  <div class="grid_4 alpha" id="equipolocal">
+					  <div class="grid_4 alpha" id="nombre"> <%= @article.local_team.name %> </div>
+					  <div class="grid_4 alpha" id="escudo"><%= image_tag("equipos/valladolid.jpg") %></div>
+				  </div>
+				  <% if @article.tipe == 'partido'%>
+				    <div class="grid_4 omega" id="equipovisitante">
+					    <div class="grid_4 alpha" id="nombre"> <%= @article.foreign_team.name %> </div>
+					    <div class="grid_4 alpha" id="escudo"><%= image_tag("equipos/LasPalmas.png") %></div>
+				    </div>
+          <% end %>
+				<% end %>
+				<div class="grid_8 alpha" id="separador"></div>
+				
+				<div class="grid_8 alpha" id="bodyart">
+					<% for i in 0..(@article.body.lines.count - 1) %>
+              <p><%= @article.body.lines[i] %></p>
+          <% end %>
+				
+				</div>
+				
+				<div class="grid_4 alpha" id="articuloFoot">
+					<p><b><%= @article.author %></b></p>
+          <% if @article.published_at != nil %>
+					  <p><b><%= @article.published_at.strftime("%d-%m-%Y") %></b></p>
+          <% end %>
+				</div>
+				
+        <div class="grid_4 omega">
+          <% if logged_in? %>
+              <% if current_user.role == "editor" %>
+                 <%= button_to 'Edit', edit_article_path(@article), :id => "button", :method => :get %> 
+                 <%= button_to 'Back', articles_path, :id => "button", :method => :get %>
+              <% end %>
+           <% end %>
+          
+        </div>
+
+         
+			</div>
+
+

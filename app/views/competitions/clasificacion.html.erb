@@ -1,0 +1,155 @@
+<div class="grid_8 alpha" id="headercontenido">
+		
+			<p> <%= @competition.name.upcase %> </p>
+			
+</div>
+
+
+<div class="grid_8 alpha" id="titulo">
+					<p>CLASIFICACIÓN</p>
+</div>
+
+<div class="grid_8 alpha" id="tabladiv">
+				
+					<table id="tabla">
+						<thead>
+							<tr>
+								<th></th>
+								<th colspan=7> <strong> En casa </strong> </th>
+								<th colspan=7> <strong> Fuera </strong> </th>
+								<th colspan=7> <strong> Total </strong> </th>
+							</tr>
+							<tr>
+								<th scope="col"><strong> Equipo </strong></th>
+								<td scope="col"><strong> PJ </strong></td>
+								<td scope="col"><strong> G </strong></td>
+								<td scope="col"><strong> E </strong></td>
+								<td scope="col"><strong> P </strong></td>
+								<td scope="col"><strong> GF </strong></td>
+								<td scope="col"><strong> GC </strong></td>
+								<th scope="col"><strong> PT </strong></th>
+								<td scope="col"><strong> PJ </strong></td>
+								<td scope="col"><strong> G </strong></td>
+								<td scope="col"><strong> E </strong></td>
+								<td scope="col"><strong> P </strong></td>
+								<td scope="col"><strong> GF </strong></td>
+								<td scope="col"><strong> GC </strong></td>
+								<th scope="col"><strong> PT </strong></th>
+								<td scope="col"><strong> PJ </strong></td>
+								<td scope="col"><strong> G </strong></td>
+								<td scope="col"><strong> E </strong></td>
+								<td scope="col"><strong> P </strong></td>
+								<td scope="col"><strong> GF </strong></td>
+								<td scope="col"><strong> GC </strong></td>
+								<th scope="col"><strong> PT </strong></th>
+							</tr>
+						</thead>
+            <tbody>
+ <% array = Matrix.build(@competition.teams.count,22) %>
+ <% array2 = *array %>
+ <% for i in 0..array.row_count - 1%>
+    <% array2[i][0] = @competition.teams[i].name %>
+ <% end %>
+ <% array = Matrix[*array2] %>
+ <% for i in 0 .. @competition.clashes.count - 1 %>
+    <% index = array.column(0).find_index(@competition.clashes[i].local_team.name) %>
+    <% array2[index][1] = array2[index][1] + 1 %>
+    <% array2[index][15] = array2[index][15] + 1 %>
+    <% if @competition.clashes[i].local_score > @competition.clashes[i].foreign_score %>
+      <% array2[index][2] = array2[index][2] + 1 %>
+      <% array2[index][16] = array2[index][16] + 1 %>
+      <% array2[index][7] = array2[index][7] + 3 %>
+      <% array2[index][21] = array2[index][21] + 3 %>
+    <% else %>
+      <% if @competition.clashes[i].local_score == @competition.clashes[i].foreign_score %>
+         <% array2[index][3] = array2[index][3] + 1 %>
+         <% array2[index][17] = array2[index][17] + 1 %>
+         <% array2[index][7] = array2[index][7] + 1 %>
+         <% array2[index][21] = array2[index][21] + 1 %>
+      <% else %>
+         <% array2[index][4] = array2[index][4] + 1 %>
+         <% array2[index][18] = array2[index][18] + 1 %> 
+      <% end %>
+    <% end %>
+    <% array2[index][5] = array2[index][5] + @competition.clashes[i].local_score %>
+    <% array2[index][19] = array2[index][19] + @competition.clashes[i].local_score %>
+    <% array2[index][6] = array2[index][6] + @competition.clashes[i].foreign_score %>
+    <% array2[index][20] = array2[index][20] + @competition.clashes[i].foreign_score %>
+
+    <% index = array.column(0).find_index(@competition.clashes[i].foreign_team.name) %>
+    <% array2[index][8] = array2[index][8] + 1 %>
+    <% array2[index][15] = array2[index][15] + 1 %>
+    <% if @competition.clashes[i].foreign_score > @competition.clashes[i].local_score %>
+      <% array2[index][9] = array2[index][9] + 1 %>
+      <% array2[index][16] = array2[index][16] + 1 %>
+      <% array2[index][14] = array2[index][14] + 3 %>
+      <% array2[index][21] = array2[index][21] + 3 %>
+    <% else %>
+      <% if @competition.clashes[i].foreign_score == @competition.clashes[i].local_score %>
+         <% array2[index][10] = array2[index][10] + 1 %>
+         <% array2[index][17] = array2[index][17] + 1 %>
+         <% array2[index][14] = array2[index][14] + 1 %>
+         <% array2[index][21] = array2[index][21] + 1 %>
+      <% else %>
+         <% array2[index][11] = array2[index][11] + 1 %>
+         <% array2[index][18] = array2[index][18] + 1 %> 
+      <% end %>
+    <% end %>
+    <% array2[index][12] = array2[index][12] + @competition.clashes[i].foreign_score %>
+    <% array2[index][19] = array2[index][19] + @competition.clashes[i].foreign_score %>
+    <% array2[index][13] = array2[index][13] + @competition.clashes[i].local_score %>
+    <% array2[index][20] = array2[index][20] + @competition.clashes[i].local_score %>
+
+
+ <% end %>
+ 
+ <% array2.sort_by!{|x| [-x[21], -x[19], x[20]]} %>
+
+ <% for i in 0..array.row_count - 1%>
+           <tr>
+								<th scope="col"><p><strong><%= i + 1 %></strong>  </p><%= link_to(array2[i][0], "#") %></th>
+								<td scope="col"><%= array2[i][1] %></td>
+								<td scope="col"><%= array2[i][2] %></td>
+								<td scope="col"><%= array2[i][3] %></td>
+								<td scope="col"><%= array2[i][4] %></td>
+								<td scope="col"><%= array2[i][5] %></td>
+								<td scope="col"><%= array2[i][6] %></td>
+								<th scope="col"><strong><%= array2[i][7] %></strong></th>
+								<td scope="col"><%= array2[i][8] %></td>
+								<td scope="col"><%= array2[i][9] %></td>
+								<td scope="col"><%= array2[i][10] %></td>
+								<td scope="col"><%= array2[i][11] %></td>
+								<td scope="col"><%= array2[i][12] %></td>
+								<td scope="col"><%= array2[i][13] %></td>
+								<th scope="col"><strong><%= array2[i][14] %></strong></th>
+								<td scope="col"><%= array2[i][15] %></td>
+								<td scope="col"><%= array2[i][16] %></td>
+								<td scope="col"><%= array2[i][17] %></td>
+								<td scope="col"><%= array2[i][18] %></td>
+								<td scope="col"><%= array2[i][19] %></td>
+								<td scope="col"><%= array2[i][20] %></td>
+								<th scope="col"><strong><%= array2[i][21] %></strong></th>
+							</tr>
+<% end %>
+
+</tbody>
+					
+					</table>
+					
+				</div>
+				
+				<div class="grid_8 alpha" id="leyenda">
+					<div class="grid_1 leyenda1" id="cajacolor"></div>
+					<p> : En puestos de Liga de campeones</p>
+				
+				</div>
+				
+				<div class="grid_8 alpha" id="leyenda">
+					<div class="grid_1 leyenda2" id="cajacolor"></div>
+					<p> : En puestos de Europa League</p>
+				</div>
+				
+				<div class="grid_8 alpha" id="leyenda">
+					<div class="grid_1 leyenda3" id="cajacolor"></div>
+					<p> : En puestos de descenso</p>
+				</div>
